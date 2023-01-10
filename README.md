@@ -38,5 +38,5 @@ Educational work with "Front-End"
 
 - sort.
 
-2. Чейнинг методов.
-3. [Библиотека Lodash](https://github.com/lodash/lodash)
+2. Цепочки вызовов - "chaining" методов.
+3. [Библиотека Lodash](https://github.com/lodash/lodash).
