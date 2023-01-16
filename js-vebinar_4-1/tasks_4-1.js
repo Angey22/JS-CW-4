@@ -183,4 +183,116 @@ console.log('-------------------------------------------');
 
 // Вызываем и выводим в лог функцию "each" передавая ей в качестве 1-го аргумента - массим "arr", а в качестве 2-го - "колл-бек" функцию "addOne"
 console.log('Массив выданый функцией "each" с использованием в качестве колл-бека - "addOne" =>', each(arr, addOne));
+console.log('*******************************************');
+
+
+//!========================================================
+
+
+// Example 4 - Стрелочные функции
+console.log('Example 4 - Стрелочные функции');
 console.log('-------------------------------------------');
+
+// Выполните рефакторинг кода используя стрелочные функции.
+
+
+// Исходный код функции высшего порядка "createProduct"
+function createProduct(partialProduct, callback) {
+  const product = { id: Date.now(), ...partialProduct };
+  callback(product);
+};
+// Исходная код "колл-бек" функции "logProduct"
+function logProduct(product) {
+  console.log(product);
+};
+// Исходная код "колл-бек" функции "logTotalPrice"
+function logTotalPrice(product) {
+  console.log(product.price * product.quantity);
+};
+
+// Вызов функции "createProduct" с "колл-бек" функцией "logProduct"
+console.log('Вызов функции "createProduct" с "колл-бек" функцией "logProduct":')
+createProduct({ name: '🍎', price: 30, quantity: 3 }, logProduct);
+console.log('-------------------------------------------');
+
+// Вызов функции "createProduct" с "колл-бек" функцией "logTotalPrice"
+console.log('Вызов функции "createProduct" с "колл-бек" функцией "logTotalPrice":');
+createProduct({ name: '🍋', price: 20, quantity: 5 }, logTotalPrice);
+console.log('-------------------------------------------');
+
+
+// ----------------- Рефакторинг --------------------------
+
+
+// Рефакторинг функции высшего порядка "createProduct" => "createProductArrow".
+const createProductArrow = (partialProduct, callback) => {
+    const product = { id: Date.now(), ...partialProduct };
+    callback(product);
+};
+// Рефакторинг "колл-бек" функции "logProduct" => "logProductArrow".
+const logProductArrow = product => console.log(product);
+// Рефакторинг "колл-бек" функции "logTotalPrice" => "logTotalPriceArrow"
+const logTotalPriceArrow = product =>
+    console.log(product.price * product.quantity);
+  
+// Вызов функции "createProductArrow" с "колл-бек" функцией "logProductArrow"
+console.log('Вызов функции "createProductArrow" с "колл-бек" функцией "logProductArrow":')
+createProductArrow({ name: '🍎', price: 30, quantity: 3 }, logProductArrow);
+console.log('-------------------------------------------');
+
+// Вызов функции "createProductArrow" с "колл-бек" функцией "logTotalPriceArrow"
+console.log('Вызов функции "createProductArrow" с "колл-бек" функцией "logTotalPriceArrow":');
+createProductArrow({ name: '🍋', price: 20, quantity: 5 }, logTotalPriceArrow);
+console.log('*******************************************');
+
+
+//!========================================================
+
+
+// Example 5 - Стрелочные функции
+console.log('Example 5 - Стрелочные функции');
+console.log('-------------------------------------------');
+
+// Выполните рефакторинг кода используя стрелочные функции.
+
+const TRANSACTION_LIMIT2 = 1000;
+
+const account2 = {
+  username: 'Jacob',
+  balance: 400,
+  withdraw(amount, onSuccess, onError) {
+    if (amount > TRANSACTION_LIMIT2) {
+      onError(`Amount should not exceed ${TRANSACTION_LIMIT2} credits`);
+    } else if (amount > this.balance) {
+      onError(`Amount can't exceed account balance of ${this.balance} credits`);
+    } else {
+      this.balance -= amount;
+      onSuccess(`Account balance: ${this.balance}`);
+    }
+  },
+  deposit(amount, onSuccess, onError) {
+    if (amount > TRANSACTION_LIMIT2) {
+      onError(`Amount should not exceed ${TRANSACTION_LIMIT2} credits`);
+    } else if (amount <= 0) {
+      onError(`Amount must be more than 0 credits`);
+    } else {
+      this.balance += amount;
+      onSuccess(`Account balance: ${this.balance}`);
+    }
+  },
+};
+
+function handleSuccess(message) {
+  console.log(`✅ Success! ${message}`);
+}
+function handleError(message) {
+  console.log(`❌ Error! ${message}`);
+}
+
+account.withdraw(2000, handleSuccess, handleError);
+account.withdraw(600, handleSuccess, handleError);
+account.withdraw(300, handleSuccess, handleError);
+account.deposit(1700, handleSuccess, handleError);
+account.deposit(0, handleSuccess, handleError);
+account.deposit(-600, handleSuccess, handleError);
+account.deposit(600, handleSuccess, handleError);
