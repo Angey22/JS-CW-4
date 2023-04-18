@@ -1,8 +1,9 @@
-//! Видео - 0:28:00...0:00:00
+//! Видео - 0:28:00...0:56:41
 
 /*
 * Цепочки вызовов - "chaining".
 */
+console.groupCollapsed('Цепочки вызовов - "chaining"'); //! Log group name
 
 // Исходная переменная с массивом
 const numbers = [1, 5, 2, 4, 3];
@@ -20,8 +21,7 @@ console.log('-------------------------------------------');
 //---------------------------------------------------------
 
 // Функция - сортировки значения ">2" (стрелка)
-const greaterThenThwoArrow = numbers.filter(
-    num => num > 2);
+const greaterThenThwoArrow = numbers.filter(num => num > 2);
 // Вывод в лог результатов работы функции "greaterThenThwo"
 console.log('Стрелочная функция "greaterThenThwoArrow"', greaterThenThwoArrow);
 console.log('*******************************************');
@@ -41,8 +41,7 @@ console.log('-------------------------------------------');
 //---------------------------------------------------------
 
 // Функция - умножения значения "на 3" (стрелка)
-const multByTwoArrow = greaterThenThwo.map(
-    num => num * 3);
+const multByTwoArrow = greaterThenThwo.map(num => num * 3);
 // Вывод в лог результатов работы функции "multByTwoArrow"
 console.log('Стрелочная функция', multByTwoArrow);
 console.log('*******************************************');
@@ -92,13 +91,16 @@ const resArrow = numbers
     .sort((a, b) => a - b);
 // Вывод в лог результатов работы функции "resArrow"
 console.log('Стрелочная функция', resArrow);
-console.log('*******************************************');
 
+
+console.groupEnd(); //! Log group end
+console.log('-1----------------------------------------------');
 
 
 /*
 * Сортируем тех, кто онлайн, по рангу
 */
+console.groupCollapsed('Сортируем тех, кто онлайн, по рангу'); //! Log group name
 
 // Переменная с массивом объектов - базой данных.
 const players = [
@@ -128,13 +130,15 @@ const onlineAndSortedArrow = players
     .sort((prevPlayer, nextPlayer) => prevPlayer.rank - nextPlayer.rank);
 // Выводим в лог результат работы функции "onlineAndSortedArrow"
 console.table('Стрелочная функция ->', onlineAndSortedArrow);
-console.log('*******************************************');
 
+console.groupEnd(); //! Log group end
+console.log('-2----------------------------------------------');
 
 
 /*
 * Увеличиваем количество "поинтов" каждого игрока
 */
+console.groupCollapsed('Увеличиваем количество "поинтов" каждого игрока'); //! Log group name
 
 // Переменная с массивом объектов - базой данных.
 const players2 = [
@@ -167,13 +171,16 @@ const upatedPlayersArrow = players2.map((player) => ({
 
 console.log('Стрелочная функция:');
 console.table(upatedPlayersArrow);
-console.log('*******************************************');
 
+
+console.groupEnd(); //! Log group end
+console.log('-3----------------------------------------------');
 
 
 /*
 * Увеличиваем количество часов игрока по id
 */
+console.groupCollapsed('Увеличиваем количество часов игрока по id'); //! Log group name
 
 // Некая вспомогательная переменная
 const playerIdToUpdate = 'player-3';
@@ -214,3 +221,6 @@ const upatedPlayers2Arrow = players2.map(player => {
 // Выводим в лог результат работы функции "upatedPlayers2Arrow"
 console.log('Стрелочная функция:');
 console.table(upatedPlayers2Arrow);
+
+console.groupEnd(); //! Log group end
+console.log('-4----------------------------------------------');
