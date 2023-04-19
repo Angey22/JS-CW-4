@@ -1,3 +1,5 @@
+//! Видео - 0:58:00...0:00:00
+
 // Исходный массив объектов - база данных
 const players = [
   { id: 'player-1', name: 'Mango', timePlayed: 310, points: 54, online: true },
