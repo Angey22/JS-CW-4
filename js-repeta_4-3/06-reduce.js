@@ -1,4 +1,4 @@
-//! Видео - 1:05:15...0:00:00
+//! Видео - 1:05:15...1:57:31
 
 /*
  * Array.prototype.reduce()
@@ -303,3 +303,7 @@ console.log(tagsStats3);
 console.groupEnd(); //! Log group end
 console.log('-6----------------------------------------------');
 
+//! Еще пример
+const getSum = array => array.reduce((acc, num, idx) => idx === 0 ? [num] : [...acc, num + acc[idx - 1]], []);
+
+console.log(getSum([1, 2, 3, 4, 5])); // => [1, 3, 6, 10, 15]
